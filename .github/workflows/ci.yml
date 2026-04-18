@@ -16,10 +16,11 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        # Aquí especificamos el archivo de solución para evitar el error MSB1011
+        run: dotnet restore test1.sln
 
       - name: Build (Paso a)
-        run: dotnet build --no-restore
+        run: dotnet build test1.sln --no-restore
 
       - name: Test (Paso b)
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test test1.sln --no-build --verbosity normal
